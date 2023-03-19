@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.util.HashMap;
 
 import telran.util.Level;
+import telran.util.LoggerRecord;
 
 public class ServerLogAppl {
 	private static final int PORT = 4000;
@@ -68,6 +69,14 @@ public class ServerLogAppl {
 	}
 
 	private static Object saveLog(String string) {
+		LoggerRecord record = parseString(string);
+		Integer count = counter.getOrDefault(record.level, 0);
+		count++;
+		counter.put(record.level, count);
+		return "OK";
+	}
+
+	private static LoggerRecord parseString(String string) {
 		// TODO Auto-generated method stub
 		return null;
 	}
