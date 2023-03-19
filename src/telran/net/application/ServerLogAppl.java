@@ -56,7 +56,7 @@ public class ServerLogAppl {
 		return res;
 	}
 	
-	private static Object getCounter(String string) {
+	private static String getCounter(String string) {
 		String result = "";
 		try {
 			Level level = Level.valueOf(string);
@@ -68,7 +68,7 @@ public class ServerLogAppl {
 		return result;
 	}
 
-	private static Object saveLog(String string) {
+	private static String saveLog(String string) {
 		LoggerRecord record = parseString(string);
 		Integer count = counter.getOrDefault(record.level, 0);
 		count++;
