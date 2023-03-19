@@ -34,5 +34,7 @@ public class ServerLogApplTest {
 		assertEquals("Wrong log format", obj.saveLog("some"));
 		LoggerRecord record = new LoggerRecord(Instant.now(), ZoneId.systemDefault().toString(), Level.INFO, "name", "message");
 		assertEquals("OK", obj.saveLog(record.serializeToString()));
+		
+		assertEquals("1", obj.getCounter(record.level.toString()));
 	}
 }
