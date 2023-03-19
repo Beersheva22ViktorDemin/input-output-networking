@@ -18,13 +18,16 @@ public class TcpClientHandler implements Handler {
 
 	@Override
 	public void publish(LoggerRecord loggerRecord) {
-		output.println(loggerRecord.toString());
-		String request;
+		String respone;
 		try {
-			request = input.readLine();
-			if (request != "OK") {
+			output.println("log#" + loggerRecord.serializeToString());
+			respone = input.readLine(); //TODO fix this line, this line do not close connections.
+			System.out.println(respone);
+			if (respone != "OK") {
 				//raise error
+				throw new RuntimeException(respone);
 			}
+			throw new RuntimeException(respone);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

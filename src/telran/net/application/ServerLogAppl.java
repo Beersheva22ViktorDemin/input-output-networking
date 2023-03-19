@@ -12,7 +12,7 @@ import telran.util.Level;
 import telran.util.LoggerRecord;
 
 public class ServerLogAppl {
-	private static final int PORT = 4000;
+	private static final int PORT = 4001;
 
 	public static void main(String[] args) throws Exception {
 		ServerSocket serverSocket = new ServerSocket(PORT);
@@ -43,13 +43,13 @@ public class ServerLogAppl {
 
 	}
 
-	private static String getResponse(String request) {
+	static String getResponse(String request) {
 		String res = "Wrong Request";
 		String tokens[] = request.split("#");
 		if (tokens.length == 2) {
 			res = switch (tokens[0]) {
 			case "log" -> saveLog(tokens[1]);
-			case "counter" -> getCounter(tokens[1]);
+			case "counter" -> getCounter(tokens[1].toUpperCase());
 			default -> "Wrong type " + tokens[0];
 			};
 		}
