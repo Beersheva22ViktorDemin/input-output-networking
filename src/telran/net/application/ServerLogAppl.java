@@ -56,7 +56,7 @@ public class ServerLogAppl {
 		return res;
 	}
 	
-	private static String getCounter(String string) {
+	static String getCounter(String string) {
 		String result = "";
 		try {
 			Level level = Level.valueOf(string);

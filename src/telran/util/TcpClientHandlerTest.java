@@ -11,7 +11,7 @@ public class TcpClientHandlerTest {
 	
 	@BeforeEach
 	static void setUp() throws FileNotFoundException {
-		handler = new TcpClientHandler();
+//		handler = new TcpClientHandler();
 		logger = new Logger(handler, "test-logger");
 	}
 	
