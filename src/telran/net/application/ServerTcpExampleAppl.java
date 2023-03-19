@@ -1,14 +1,16 @@
 package telran.net.application;
+
 import java.io.*;
 import java.net.*;
+
 public class ServerTcpExampleAppl {
 
 	private static final int PORT = 4000;
 
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception {
 		ServerSocket serverSocket = new ServerSocket(PORT);
-		System.out.println("server listening on port " + PORT );
-		while(true) {
+		System.out.println("server listening on port " + PORT);
+		while (true) {
 			Socket socket = serverSocket.accept();
 			try {
 				runServerClient(socket);
@@ -19,10 +21,10 @@ public class ServerTcpExampleAppl {
 
 	}
 
-	private static void runServerClient(Socket socket) throws IOException  {
+	private static void runServerClient(Socket socket) throws IOException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		PrintStream writer = new PrintStream(socket.getOutputStream());
-		while(true) {
+		while (true) {
 			String request = reader.readLine();
 			if (request == null) {
 				break;
@@ -38,7 +40,7 @@ public class ServerTcpExampleAppl {
 		String res = "Wrong Request";
 		String tokens[] = request.split("#");
 		if (tokens.length == 2) {
-			res = switch(tokens[0]) {
+			res = switch (tokens[0]) {
 			case "reverse" -> new StringBuilder(tokens[1]).reverse().toString();
 			case "length" -> tokens[1].length() + "";
 			default -> "Wrong type " + tokens[0];
