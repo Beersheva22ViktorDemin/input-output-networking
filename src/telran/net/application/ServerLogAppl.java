@@ -68,17 +68,22 @@ public class ServerLogAppl {
 		return result;
 	}
 
-	private static String saveLog(String string) {
-		LoggerRecord record = parseString(string);
-		Integer count = counter.getOrDefault(record.level, 0);
-		count++;
-		counter.put(record.level, count);
-		return "OK";
+	static String saveLog(String string) {
+		String result = "OK";
+		try {
+			LoggerRecord record = parseString(string);
+			Integer count = counter.getOrDefault(record.level, 0);
+			count++;
+			counter.put(record.level, count);
+		} catch (Exception e) {
+			result = "Wrong log format";
+		}
+
+		return result;
 	}
 
-	private static LoggerRecord parseString(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	private static LoggerRecord parseString(String string) throws ClassNotFoundException, IOException {
+		return LoggerRecord.unserializeFromString(string);
 	}
 
 	static HashMap<Level, Integer> counter = new HashMap<>();
