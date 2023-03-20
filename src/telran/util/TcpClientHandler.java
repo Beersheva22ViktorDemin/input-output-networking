@@ -21,13 +21,11 @@ public class TcpClientHandler implements Handler {
 		String respone;
 		try {
 			output.println("log#" + loggerRecord.serializeToString());
-			respone = input.readLine(); //TODO fix this line, this line do not close connections.
-			System.out.println(respone);
-			if (respone != "OK") {
+			respone = input.readLine();
+			if (respone.equals("OK" + System.lineSeparator())) {
 				//raise error
 				throw new RuntimeException(respone);
 			}
-			throw new RuntimeException(respone);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -37,6 +37,7 @@ public class ServerLogAppl {
 				break;
 			}
 			String response = getResponse(request);
+			System.out.println(response);
 			writer.println(response);
 		}
 		System.out.println("client closed connection");
